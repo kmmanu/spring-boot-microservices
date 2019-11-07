@@ -13,6 +13,8 @@ services:
     ports:
       - "8765:8765"
     restart: always
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
     depends_on: 
       - naming-server
     networks:
@@ -23,6 +25,8 @@ services:
     ports:
       - "8081:8081"
     restart: always
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
     depends_on: 
       - naming-server
     networks:
@@ -33,6 +37,8 @@ services:
     ports:
       - "8082:8082"
     restart: always
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
     depends_on: 
       - greeting-service
       - naming-server

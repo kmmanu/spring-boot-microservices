@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @EnableDiscoveryClient
@@ -20,15 +21,16 @@ public class EurekaClientApplication {
 }
 
 @RestController
+@RequestMapping("/client")
 @Slf4j
-class ServiceInstanceRestController {
+class GreetingClientController {
 
     @Autowired
-    private GreetingServiceProxy greetingServiceProxy;
+    private GreetingServerProxy greetingServiceProxy;
 
     @GetMapping("/greeting")
     public String greeting() {
-        log.info("Getting greeting from greeting service");
+        log.info("Inside Greeting Client. Getting greeting from greeting service");
         return greetingServiceProxy.greeting();
     }
 }
