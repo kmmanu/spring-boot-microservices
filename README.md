@@ -22,3 +22,7 @@ docker-compose up
 
 ```
 
+## Step 3  : Run the command
+
+`curl http://localhost:8082/greeting`
+
