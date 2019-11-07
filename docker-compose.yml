@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  greeting-service:
+    image: kmmanu/greeting-service:0.0.1-SNAPSHOT
+    ports:
+      - "8081:8081"
+    restart: always
+    networks:
+      - spring-boot-test
+
+  greeting-client:
+    image: kmmanu/greeting-client:0.0.1-SNAPSHOT
+    ports:
+      - "8082:8082"
+    restart: always
+    depends_on: # Start the depends_on first
+      - greeting-service
+    environment:
+      GREETING_URI: http://greeting-service:8081
+    networks:
+      - spring-boot-test
+  
+# Networks to be created to facilitate communication between containers
+networks:
+  spring-boot-test:
