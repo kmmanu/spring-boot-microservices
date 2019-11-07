@@ -1,6 +1,10 @@
 # Spring Boot Microservices
 
-## Step 1  : Use Feign client to communicate  the services running in docker containers
+## Step 1  : Create docker images
+
+`mvn clean install dockerfile:build`
+
+## Step 2  : Use Feign client to communicate  the services running in docker containers
 
 ```
 docker network create spring-boot-test
