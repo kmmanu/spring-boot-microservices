@@ -1,14 +1,15 @@
 package hello;
 
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 
-//@FeignClient(name = "greeting-service")
-@FeignClient(name = "api-gateway-server")  // zuul service name
+/**
+ * When running with dockers in user-defined network, container uses service 
+ */
+@FeignClient(name = "greeting-service", url = "${GREETING_URI:http://localhost:8081}")
 public interface GreetingServerProxy {
 
-//    @GetMapping("/server/greeting")
-    @GetMapping("/greeting-service/server/greeting")   // For zuul, pass the service name in the URL
+    @GetMapping("/server/greeting")
     String greeting();
 }

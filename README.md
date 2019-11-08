@@ -8,27 +8,24 @@
 
 ```
 docker network create spring-boot-test
-docker container run -p 8761:8761 --network=spring-boot-test --name naming-server kmmanu/service-registry:0.0.2-SNAPSHOT
-docker container run -p 8765:8765 --network=spring-boot-test --env SPRING_PROFILES_ACTIVE=prod --name api-gateway-server kmmanu/api-gateway:0.0.1-SNAPSHOT
-docker container run -p 8081:8081 --network=spring-boot-test --env SPRING_PROFILES_ACTIVE=prod --name greeting-service kmmanu/greeting-service:0.0.2-SNAPSHOT
-docker container run -p 8082:8082 --network=spring-boot-test --env SPRING_PROFILES_ACTIVE=prod --name greeting-client  kmmanu/eureka-client:0.0.3-SNAPSHOT
+docker container run -p 8081:8081 --network=spring-boot-test --name greeting-service kmmanu/greeting-service:0.1.1-SNAPSHOT
+docker container run -p 8082:8082 --network=spring-boot-test --name --env GREETING_URI=http://greeting-service:8081 greeting-client  kmmanu/eureka-client:0.1.1-SNAPSHOT
 ```
 
 Or use the docker compose :-
-
-
 ```
 docker-compose up
 
 ```
 
-## Step 3  : Route calls via Zuul gateway.
 
-To call the greeting client via gateway :- `curl http://localhost:8765/greeting-client/client/greeting`
 
-To call the greeting service via gateway :- `curl http://localhost:8765/greeting-service/server/greeting`    
+`http://localhost:8082/client/greeting`
 
-To call the greeting client directly :- `curl http://localhost:8082/client/greeting`  (Not recommended)
 
-To call the greeting server directly :-  `curl http://localhost:8081/server/greeting` (Not recommended)
-
+docker exec -it <greeting_client_container_id>  ping <greeting-service-ip>
+docker exec -it <greeting_client_container_id>  ping greeting-service
+docker container ls
+docker container logs <greeting_client_container_id>
+docker container inspect <greeting_client_container_id>
+docker network inspect <network-name>
