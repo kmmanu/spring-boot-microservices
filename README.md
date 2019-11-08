@@ -8,7 +8,7 @@
 
 ```
 docker network create spring-boot-test
-docker container run -p 8761:8761 --network=spring-boot-test --name naming-server kmmanu/service-registry:0.0.2-SNAPSHOT
+docker container run -p 8761:8761 --network=spring-boot-test --name naming-server kmmanu/naming-server:0.0.2-SNAPSHOT
 docker container run -p 8765:8765 --network=spring-boot-test --env SPRING_PROFILES_ACTIVE=prod --name api-gateway-server kmmanu/api-gateway:0.0.1-SNAPSHOT
 docker container run -p 8081:8081 --network=spring-boot-test --env SPRING_PROFILES_ACTIVE=prod --name greeting-service kmmanu/greeting-service:0.0.2-SNAPSHOT
 docker container run -p 8082:8082 --network=spring-boot-test --env SPRING_PROFILES_ACTIVE=prod --name greeting-client  kmmanu/eureka-client:0.0.3-SNAPSHOT
@@ -41,4 +41,16 @@ docker container logs <greeting_client_container_id> -f
 docker container inspect <greeting_client_container_id>
 docker network inspect <network-name>
 ```
+
+## Service discovery
+![Alt text](./images/service-registry-overview.png)
+<img src="./images/service-registry-overview.png">
+
+## Zuul API Gateway
+![Alt text](./images/zuul.jpg)
+<img src="./images/zuul.jpg">
+![Alt text](./images/zuul-filters.jpg)
+<img src="./images/zuul-filters.jpg">
+
+
 
