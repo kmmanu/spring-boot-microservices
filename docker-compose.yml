@@ -10,8 +10,6 @@ services:
       
   greeting-service:
     image: kmmanu/greeting-service:0.0.2-SNAPSHOT
-    ports:
-      - "8081:8081"
     restart: always
     environment:
       SPRING_PROFILES_ACTIVE: prod
