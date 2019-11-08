@@ -9,9 +9,8 @@
 ```
 docker network create spring-boot-test
 docker container run -p 8761:8761 --network=spring-boot-test --name naming-server kmmanu/service-registry:0.0.2-SNAPSHOT
-docker container run -p 8765:8765 --network=spring-boot-test --env SPRING_PROFILES_ACTIVE=prod --name api-gateway-server kmmanu/api-gateway:0.0.1-SNAPSHOT
 docker container run -p 8081:8081 --network=spring-boot-test --env SPRING_PROFILES_ACTIVE=prod --name greeting-service kmmanu/greeting-service:0.0.2-SNAPSHOT
-docker container run -p 8082:8082 --network=spring-boot-test --env SPRING_PROFILES_ACTIVE=prod --name greeting-client  kmmanu/eureka-client:0.0.3-SNAPSHOT
+docker container run -p 8082:8082 --network=spring-boot-test --env SPRING_PROFILES_ACTIVE=prod --name greeting-client  kmmanu/greeting-client:0.1.2-SNAPSHOT
 ```
 
 Or use the docker compose :-
@@ -33,6 +32,7 @@ To call the greeting client directly :- `curl http://localhost:8082/client/greet
 To call the greeting server directly :-  `curl http://localhost:8081/server/greeting` (Not recommended)
 
 ## Useful commands
+
 ```
 docker exec -it <greeting_client_container_id>  ping <greeting-service-ip>
 docker exec -it <greeting_client_container_id>  ping greeting-service
