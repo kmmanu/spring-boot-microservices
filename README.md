@@ -32,3 +32,13 @@ To call the greeting client directly :- `curl http://localhost:8082/client/greet
 
 To call the greeting server directly :-  `curl http://localhost:8081/server/greeting` (Not recommended)
 
+## Useful commands
+```
+docker exec -it <greeting_client_container_id>  ping <greeting-service-ip>
+docker exec -it <greeting_client_container_id>  ping greeting-service
+docker container ls
+docker container logs <greeting_client_container_id> -f
+docker container inspect <greeting_client_container_id>
+docker network inspect <network-name>
+```
+
