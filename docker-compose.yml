@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   naming-server:
-    image: kmmanu/service-registry:0.0.2-SNAPSHOT
+    image: kmmanu/naming-server:0.0.2-SNAPSHOT
     ports:
       - "8761:8761"
     restart: always

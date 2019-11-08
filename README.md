@@ -42,3 +42,10 @@ docker container inspect <greeting_client_container_id>
 docker network inspect <network-name>
 ```
 
+## Service discovery
+![Alt text](./images/service-registry-overview.png)
+
+## Zuul API Gateway
+![Alt text](./images/zuul.jpg)
+
+![Alt text](./images/zuul-filters.jpg)
