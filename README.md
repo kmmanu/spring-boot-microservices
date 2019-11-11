@@ -32,6 +32,10 @@ To call the greeting client directly :- `curl http://localhost:8082/client/greet
 
 To call the greeting server directly :-  `curl http://localhost:8081/server/greeting` (Not recommended)
 
+Eureka console :-  http://localhost:8761/
+RabbitMQ console :- http://localhost:15672/
+Zipkin server console :- http://localhost:9411/zipkin/
+
 ## Useful commands
 ```
 docker exec -it <greeting_client_container_id>  ping <greeting-service-ip>
