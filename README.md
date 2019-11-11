@@ -19,6 +19,7 @@ Or use the docker compose :-
 
 ```
 docker-compose up
+docker-compose up scale greeting-service=2
 
 ```
 
