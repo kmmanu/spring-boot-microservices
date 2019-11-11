@@ -5,7 +5,7 @@
 
     <groupId>com.example</groupId>
     <artifactId>greeting-service</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <parent>
@@ -45,7 +45,14 @@
             <artifactId>lombok</artifactId>
             <version>1.18.10</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

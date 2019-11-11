@@ -1,5 +1,6 @@
 version: '3.7'
 services:
+
   naming-server:
     image: kmmanu/naming-server:0.0.2-SNAPSHOT
     ports:
@@ -8,20 +9,46 @@ services:
     networks:
       - spring-boot-test
 
+  rabbitmq:
+    image: rabbitmq:3.8.1-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    restart: always
+    networks:
+      - spring-boot-test
+      
+  zipkin-server:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"
+    depends_on:
+      - rabbitmq
+    environment:
+      STORAGE_TYPE: mem
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+    restart: always
+    networks:
+      - spring-boot-test   
+
   api-gateway-server:
-    image: kmmanu/api-gateway:0.0.1-SNAPSHOT
+    image: kmmanu/api-gateway:0.0.2-SNAPSHOT
     ports:
       - "8765:8765"
     restart: always
     environment:
       SPRING_PROFILES_ACTIVE: prod
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
     depends_on: 
       - naming-server
+      - rabbitmq
+      - zipkin-server
     networks:
       - spring-boot-test
 
   greeting-service:
-    image: kmmanu/greeting-service:0.0.2-SNAPSHOT
+    image: kmmanu/greeting-service:0.0.3-SNAPSHOT
     #ports:
     #  - "8081:8081"
     #deploy:
@@ -29,21 +56,27 @@ services:
     restart: always
     environment:
       SPRING_PROFILES_ACTIVE: prod
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
     depends_on: 
       - naming-server
+      - rabbitmq
+      - zipkin-server
     networks:
       - spring-boot-test
 
   greeting-client:
-    image: kmmanu/greeting-client:0.0.3-SNAPSHOT
+    image: kmmanu/greeting-client:0.0.4-SNAPSHOT
     ports:
       - "8082:8082"
     restart: always
     environment:
       SPRING_PROFILES_ACTIVE: prod
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
     depends_on: 
       - greeting-service
       - naming-server
+      - rabbitmq
+      - zipkin-server
     networks:
       - spring-boot-test
   

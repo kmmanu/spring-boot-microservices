@@ -19,6 +19,7 @@ Or use the docker compose :-
 
 ```
 docker-compose up
+docker-compose up scale greeting-service=2
 
 ```
 
@@ -31,6 +32,10 @@ To call the greeting service via gateway :- `curl http://localhost:8765/greeting
 To call the greeting client directly :- `curl http://localhost:8082/client/greeting`  (Not recommended)
 
 To call the greeting server directly :-  `curl http://localhost:8081/server/greeting` (Not recommended)
+
+Eureka console :-  http://localhost:8761/
+RabbitMQ console :- http://localhost:15672/
+Zipkin server console :- http://localhost:9411/zipkin/
 
 ## Useful commands
 ```
