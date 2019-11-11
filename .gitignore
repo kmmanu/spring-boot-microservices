@@ -34,3 +34,7 @@ dependency-reduced-pom.xml
 mem*.db
 
 README.html
+
+# Application generated files
+*.log
+*.log.gz

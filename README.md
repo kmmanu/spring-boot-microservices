@@ -36,6 +36,7 @@ To call the greeting server directly :-  `curl http://localhost:8081/server/gree
 ```
 docker exec -it <greeting_client_container_id>  ping <greeting-service-ip>
 docker exec -it <greeting_client_container_id>  ping greeting-service
+docker exec -it greeting-service sh
 docker container ls
 docker container logs <greeting_client_container_id> -f
 docker container inspect <greeting_client_container_id>

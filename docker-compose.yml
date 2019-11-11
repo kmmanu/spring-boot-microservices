@@ -22,8 +22,10 @@ services:
 
   greeting-service:
     image: kmmanu/greeting-service:0.0.2-SNAPSHOT
-    ports:
-      - "8081:8081"
+    #ports:
+    #  - "8081:8081"
+    #deploy:
+    #  replicas: 2
     restart: always
     environment:
       SPRING_PROFILES_ACTIVE: prod
@@ -48,3 +50,5 @@ services:
 # Networks to be created to facilitate communication between containers
 networks:
   spring-boot-test:
+volumes:
+  logs:
